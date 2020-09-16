@@ -1,23 +1,12 @@
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-
-<p align="center">
-  <a href="https://www.cosmostation.io" target="_blank" rel="noopener noreferrer"><img width="100" src="https://user-images.githubusercontent.com/20435620/55696624-d7df2e00-59f8-11e9-9126-edf9a40b11a8.png" alt="Cosmostation logo"></a>
-</p>
 <h1 align="center">
-    CosmosJS - Cosmos JavaScript Library 
+    Hschainjs - hschain JavaScript Library 
 </h1>
 
-*:star: Developed / Developing by [Cosmostation](https://www.cosmostation.io/)*
+*:star: Developed / Developing by var*
 
-A JavasSript Open Source Library for [Cosmos Network](https://cosmos.network/), [IRISnet](https://www.irisnet.org/), [Kava](https://www.kava.io/), [Band Protocol](https://bandprotocol.com/), and [IOV](https://iov.one/)
+A JavasSript Open Source Library for [hschain Network](https://testnet.hschain.io/)
 
 This library supports cosmos address generation and verification. It enables you to create an offline signature functions of different types of transaction messages. It will eventually support all the other blockchains that are based on Tendermint in the future.
-
-[![MIT](https://img.shields.io/apm/l/vim-mode.svg)](https://github.com/cosmostation/cosmosjs/blob/master/LICENSE)
-[![NPM](https://badge.fury.io/js/%40cosmostation%2Fcosmosjs.svg)](https://www.npmjs.com/package/@cosmostation/cosmosjs)
-[![](https://data.jsdelivr.com/v1/package/npm/@cosmostation/cosmosjs/badge?style=rounded)](https://www.jsdelivr.com/package/npm/@cosmostation/cosmosjs?path=dist)
 
 ## Installation
 
@@ -38,97 +27,65 @@ HSCHAINJS supports browserify.
 #### NodeJS
 
 ```js
-const cosmosjs = require("@cosmostation/cosmosjs");
+const hschainjs = require("@hschainjs/hschainjs");
 ```
 
 #### ES6 module
 ```js
-import cosmosjs from "@cosmostation/cosmosjs";
+import hschainjs from "@hschainjs/hschainjs";
 ```
 
 #### CDN
 
-- You can find cosmosjs jsDelivr and use the global cosmosjs variable.
-- You can see example file at [/example/browser-example.html](https://github.com/cosmostation/cosmosjs/tree/master/example/browser-example.html)
+- You can find hschainjs jsDelivr and use the global hschainjs variable.
+- You can see example file at [/example/browser-example.html](https://github.com/cosmostation/hschainjs/tree/master/example/browser-example.html)
 
 ```js
-<script src="https://cdn.jsdelivr.net/npm/@cosmostation/cosmosjs@0.6.8/dist/cosmos.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@hschainjs/hschainjs@1.0.0/dist/hschain.min.js"></script>
 ```
 
 ## Usage
-- Cosmos: Generate Cosmos address from mnemonic 
+- hschainjs: Generate Cosmos address from mnemonic 
 ```js
-const cosmosjs = require("@cosmostation/cosmosjs");
+const hschainjs = require("@hschainjs/hschainjs");
 
-const chainId = "cosmoshub-3";
-const cosmos = cosmosjs.network(lcdUrl, chainId);
+const chainId = "hst01";
+const hschain = hschainjs.network(lcdUrl, chainId);
 
 const mnemonic = "..."
-cosmos.setPath("m/44'/118'/0'/0/0");
-const address = cosmos.getAddress(mnemonic);
-const ecpairPriv = cosmos.getECPairPriv(mnemonic);
-```
-- Iris
-```js
-const cosmosjs = require("@cosmostation/cosmosjs");
-
-const chainId = "irishub";
-const iris = cosmosjs.network(lcdUrl, chainId);
-iris.setBech32MainPrefix("iaa");
-```
-- Kava
-```js
-const cosmosjs = require("@cosmostation/cosmosjs");
-
-const chainId = "kava-3";
-const kava = cosmosjs.network(lcdUrl, chainId);
-kava.setBech32MainPrefix("kava");
-```
-- Band
-```js
-const cosmosjs = require("@cosmostation/cosmosjs");
-
-const chainId = "band-wenchang-mainnet";
-const band = cosmosjs.network(lcdUrl, chainId);
-band.setBech32MainPrefix("band");
-```
-- IOV
-```js
-const cosmosjs = require("@cosmostation/cosmosjs");
-
-const chainId = "iov-mainnet-2";
-const iov = cosmosjs.network(lcdUrl, chainId);
-iov.setBech32MainPrefix("star");
+hschain.setPath("m/44'/118'/0'/0/0");
+const address = hschain.getAddress(mnemonic);
+const ecpairPriv = hschain.getECPairPriv(mnemonic);
 ```
 
 Generate ECPairPriv value that is needed for signing signatures
 ```js
-const ecpairPriv = cosmos.getECPairPriv(mnemonic);
+const ecpairPriv = hschain.getECPairPriv(mnemonic);
 ```
 
 Transfer ATOM to designated address. 
 * Make sure to input proper type, account number, and sequence of the cosmos account to generate StdSignMsg. You can get those account information on blockchain 
-* Above 0.5.0 version, CosmosJS follows the exact same json format as Cosmos SDK defines.
+* Above 0.5.0 version, Hschainjs follows the exact same json format as Cosmos SDK defines.
 ```js
-cosmos.getAccounts(address).then(data => {
-	let stdSignMsg = cosmos.newStdMsg({
+hschain.getAccounts(address).then(data => {
+	let stdSignMsg = hschain.newStdMsg({
 		msgs: [
 			{
-				type: "cosmos-sdk/MsgSend",
+				type: "hschain-sdk/MsgSend",
 				value: {
 					amount: [
 						{
 							amount: String(100000),
-							denom: "uatom"
+							denom: "uhst"
 						}
 					],
 					from_address: address,
-					to_address: "cosmos18vhdczjut44gpsy804crfhnd5nq003nz0nf20v"
+					to_address: "hsc18vhdczjut44gpsy804crfhnd5nq003nz0nf20v"
 				}
 			}
 		],
 		chain_id: chainId,
-		fee: { amount: [ { amount: String(5000), denom: "uatom" } ], gas: String(200000) },
+		fee: { amount: [ { amount: String(5000), denom: "uhst" } ], gas: String(200000) },
 		memo: "",
 		account_number: String(data.result.value.account_number),
 		sequence: String(data.result.value.sequence)
@@ -138,8 +95,8 @@ cosmos.getAccounts(address).then(data => {
 })
 ```
 
-Sign transaction by using stdSignMsg and broadcast by using [/txs](https://lcd-cosmos-free.cosmostation.io/txs) REST API
+Sign transaction by using stdSignMsg and broadcast by using [/txs]https://testnet.hschain.io/txs) REST API
 ```js
-const signedTx = cosmos.sign(stdSignMsg, ecpairPriv);
-cosmos.broadcast(signedTx).then(response => console.log(response));
+const signedTx = hschain.sign(stdSignMsg, ecpairPriv);
+hschain.broadcast(signedTx).then(response => console.log(response));
 ```
