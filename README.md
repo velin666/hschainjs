@@ -2,7 +2,7 @@
     Hschainjs - hschain JavaScript Library 
 </h1>
 
-*:star: Developed / Developing by var*
+*:star: Developed / Developing by ver*
 
 A JavasSript Open Source Library for [hschain Network](https://testnet.hschain.io/)
 
@@ -15,7 +15,7 @@ In order to fully use this library, you need to run a local or remote full node 
 ### NPM
 
 ```bash
-npm install @hschainjs/hschainjs
+npm install hschainjs
 ```
 
 ### Browser Distribution
@@ -27,12 +27,12 @@ HSCHAINJS supports browserify.
 #### NodeJS
 
 ```js
-const hschainjs = require("@hschainjs/hschainjs");
+const hschainjs = require("hschainjs");
 ```
 
 #### ES6 module
 ```js
-import hschainjs from "@hschainjs/hschainjs";
+import hschainjs from "hschainjs";
 ```
 
 #### CDN
@@ -41,13 +41,13 @@ import hschainjs from "@hschainjs/hschainjs";
 - You can see example file at [/example/browser-example.html](https://github.com/cosmostation/hschainjs/tree/master/example/browser-example.html)
 
 ```js
-<script src="https://cdn.jsdelivr.net/npm/@hschainjs/hschainjs@1.0.0/dist/hschain.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hschainjs@1.0.0/dist/hschain.min.js"></script>
 ```
 
 ## Usage
-- hschainjs: Generate Cosmos address from mnemonic 
+- hschainjs: Generate Cosmos address from mnemonic  
 ```js
-const hschainjs = require("@hschainjs/hschainjs");
+const hschainjs = require("hschainjs");
 
 const chainId = "hst01";
 const hschain = hschainjs.network(lcdUrl, chainId);

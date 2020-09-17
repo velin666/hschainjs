@@ -1,5 +1,5 @@
 {
-  "name": "@hschainjs/hschainjs",
+  "name": "hschainjs",
   "version": "1.0.0",
   "description": "A JavasSript Open Source Library for hschain Network. (HTML developers can use /dist/cosmos.js)",
   "main": "./src/index.js",
