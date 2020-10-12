@@ -105,7 +105,7 @@ Hschainjs.prototype.getECPairPriv = function(mnemonic) {
 	if (typeof mnemonic !== "string") {
 	    throw new Error("mnemonic expects a string")
 	}
-	const seed = bip39.mnemonicToSeed(mnemonic);
+	const seed = bip39.mnemonicToSeedSync(mnemonic);
 	const node = bip32.fromSeed(seed);
 	const child = node.derivePath(this.path);
 	const ecpair = bitcoinjs.ECPair.fromPrivateKey(child.privateKey, {compressed : false})
